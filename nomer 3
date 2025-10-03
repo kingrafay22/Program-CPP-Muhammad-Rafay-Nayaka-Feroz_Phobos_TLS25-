@@ -1,0 +1,47 @@
+#include <iostream>
+
+std:: string getLampColor(int time)
+{
+    int startOffset = -35;
+    int cycle = 103;
+    int t = (time - startOffset) % cycle;
+
+    std:: string colors[] = {"Merah", "Kuning", "Hijau"};
+    const int durations[] = {80, 3, 20};
+
+    int sum = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        sum += durations[i];
+        if (t < sum)
+            return colors[i];
+    }
+    return "Tidak diketahui";
+}
+
+int main()
+{
+char loop;
+do {
+    int inputTime;
+    std::cout << "=== Status Lampu APILL ===\n";
+    std::cout << "Masukkan detik (angka positif): ";
+    std::cin >> inputTime;
+
+    if (inputTime < 0)
+    {
+        std::cout << "Waktu tidak negatif";
+    }
+    else
+    {
+        std::cout << "Detik ke-" << inputTime << ": " << getLampColor(inputTime) << std:: endl;
+    }
+    
+    std:: cout <<"Apakah anda ingin mengulangi? (y/n): ";
+    std:: cin >> loop;
+
+} while (loop == 'y' || loop == 'Y');
+std:: cout << "Terima kasih telah menggunakan program ini" << std:: endl;
+
+    return 0;
+}
